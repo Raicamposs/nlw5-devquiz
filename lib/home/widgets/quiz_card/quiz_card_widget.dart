@@ -1,12 +1,13 @@
 import 'package:devquiz/core/app_colors.dart';
 import 'package:devquiz/core/app_text_styles.dart';
-import 'package:devquiz/home/models/quiz.dart';
+
+import 'package:devquiz/shared/models/quiz_model.dart';
 import 'package:flutter/material.dart';
 import 'package:devquiz/shared/widgets/progress_indicator/progress_indicator_widget.dart';
 
 class QuizCardWidget extends StatelessWidget {
   const QuizCardWidget({Key? key, required this.quiz}) : super(key: key);
-  final Quiz quiz;
+  final QuizModel quiz;
 
   @override
   Widget build(BuildContext context) {
@@ -23,36 +24,31 @@ class QuizCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
             height: 40,
             width: 40,
             child: Image.asset(quiz.image),
           ),
-          SizedBox(height: 24),
           Text(
             quiz.title,
             style: AppTextStyles.heading15,
           ),
-          SizedBox(height: 24),
           Row(
             children: [
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Text(
-                    '${quiz.progress} de ${quiz.total}',
-                    style: AppTextStyles.body11,
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Text(
+                  '${quiz.questionsAnswered.toString().padLeft(2, '0')} de ${quiz.questionsNumber.toString().padLeft(2, '0')}',
+                  style: AppTextStyles.body11,
                 ),
               ),
               Expanded(
-                flex: 7,
                 child: ProgressIndicatorWidget(quiz.percentProgress),
               )
             ],
-          )
+          ),
         ],
       ),
     );
