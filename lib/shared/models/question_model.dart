@@ -6,6 +6,10 @@ import 'package:flutter/foundation.dart';
 class QuestionModel {
   final String title;
   final List<AnswerModel> answers;
+
+  AnswerModel get correctAnswer =>
+      answers.firstWhere((element) => element.isRight);
+
   QuestionModel({
     required this.title,
     required this.answers,

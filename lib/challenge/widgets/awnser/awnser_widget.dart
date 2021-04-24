@@ -1,17 +1,21 @@
 import 'package:devquiz/core/app_colors.dart';
 import 'package:devquiz/core/app_text_styles.dart';
+import 'package:devquiz/shared/models/awnser_model.dart';
 import 'package:flutter/material.dart';
 
 class AwnserWidget extends StatelessWidget {
-  final String title;
-  final bool isRight;
+  final AnswerModel answer;
   final bool isSelected;
+  final VoidCallback onTap;
+
   const AwnserWidget({
     Key? key,
-    required this.title,
+    required this.answer,
     this.isSelected = false,
-    this.isRight = false,
+    required this.onTap,
   }) : super(key: key);
+
+  bool get isRight => answer.isRight;
 
   Color get _selectedColorCardRight =>
       isRight ? AppColors.lightGreen : AppColors.lightRed;
@@ -58,29 +62,32 @@ class AwnserWidget extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(child: Text(title, style: _textStyle)),
-          Container(
-            height: 24,
-            width: 24,
-            decoration: BoxDecoration(
-              border: Border.fromBorderSide(
-                BorderSide(
-                  color: _iconBorderColor,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(child: Text(answer.title, style: _textStyle)),
+            Container(
+              height: 24,
+              width: 24,
+              decoration: BoxDecoration(
+                border: Border.fromBorderSide(
+                  BorderSide(
+                    color: _iconBorderColor,
+                  ),
                 ),
+                borderRadius: BorderRadius.circular(12),
+                color: _iconBackgroudColor,
               ),
-              borderRadius: BorderRadius.circular(12),
-              color: _iconBackgroudColor,
+              child: Icon(
+                _selectedIconRight,
+                size: 16,
+                color: Colors.white,
+              ),
             ),
-            child: Icon(
-              _selectedIconRight,
-              size: 16,
-              color: Colors.white,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
