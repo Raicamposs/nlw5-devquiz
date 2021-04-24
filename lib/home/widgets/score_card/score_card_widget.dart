@@ -15,6 +15,7 @@ class ScoreCardWidget extends StatelessWidget {
         color: AppColors.white,
       ),
       height: 136,
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
