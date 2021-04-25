@@ -69,7 +69,7 @@
                 ]
             }
         ]
-    },
+    } ,
     {
         "title": "Widgets do Flutter",
         "level": "Fácil",
@@ -96,15 +96,7 @@
                         "isRight": false
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "title": "Widgets do Flutter",
-        "level": "Fácil",
-        "image": "blocks",
-        "questionsAnswered": 0,
-        "questions": [
+            },
             {
                 "title": "O que o Flutter faz em sua totalidade?",
                 "answers": [
@@ -125,15 +117,7 @@
                         "isRight": false
                     }
                 ]
-            }
-        ]
-    },
-    {
-        "title": "Widgets do Flutter",
-        "level": "Fácil",
-        "image": "blocks",
-        "questionsAnswered": 0,
-        "questions": [
+            },
             {
                 "title": "O que o Flutter faz em sua totalidade?",
                 "answers": [

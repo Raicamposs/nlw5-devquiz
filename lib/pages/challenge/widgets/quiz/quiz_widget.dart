@@ -1,13 +1,13 @@
-import 'package:devquiz/challenge/widgets/awnser/awnser_widget.dart';
+import 'package:devquiz/pages/challenge/widgets/awnser/awnser_widget.dart';
 import 'package:devquiz/core/app_text_styles.dart';
-import 'package:devquiz/feed_back/feed_back_page.dart';
+import 'package:devquiz/pages/feed_back/feed_back_page.dart';
 import 'package:devquiz/shared/models/awnser_model.dart';
 import 'package:devquiz/shared/models/question_model.dart';
 import 'package:flutter/material.dart';
 
 class QuizWidget extends StatefulWidget {
   final QuestionModel question;
-  final VoidCallback onAnswering;
+  final Function(bool) onAnswering;
 
   const QuizWidget(
       {Key? key, required this.question, required this.onAnswering})
@@ -43,7 +43,6 @@ class _QuizWidgetState extends State<QuizWidget> {
                     onTap: () {
                       selectedIndex = index;
                       setState(() {});
-
                       showFeedBack(answer);
                     },
                   ),
@@ -70,5 +69,5 @@ class _QuizWidgetState extends State<QuizWidget> {
             ),
           ),
         );
-      }).then((_) => widget.onAnswering());
+      }).then((_) => widget.onAnswering(answer.isRight));
 }

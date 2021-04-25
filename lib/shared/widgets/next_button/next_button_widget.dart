@@ -43,6 +43,16 @@ class NextButtonWidget extends StatelessWidget {
         onPressed: onPressed,
       );
 
+  factory NextButtonWidget.transparent(
+          {required String label, required VoidCallback? onPressed}) =>
+      NextButtonWidget._internal(
+        Colors.transparent,
+        AppColors.grey,
+        Colors.transparent,
+        label,
+        onPressed: onPressed,
+      );
+
   @override
   Widget build(BuildContext context) {
     return TextButton(

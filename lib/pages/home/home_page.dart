@@ -1,8 +1,8 @@
-import 'package:devquiz/challenge/challenge_page.dart';
+import 'package:devquiz/pages/challenge/challenge_page.dart';
 import 'package:devquiz/core/app_colors.dart';
-import 'package:devquiz/home/widgets/app_bar/app_bar_widget.dart';
-import 'package:devquiz/home/widgets/level_button/level_button_widget.dart';
-import 'package:devquiz/home/widgets/quiz_card/quiz_card_widget.dart';
+import 'package:devquiz/pages/home/widgets/app_bar/app_bar_widget.dart';
+import 'package:devquiz/pages/home/widgets/level_button/level_button_widget.dart';
+import 'package:devquiz/pages/home/widgets/quiz_card/quiz_card_widget.dart';
 import 'package:devquiz/shared/models/quiz_model.dart';
 import 'package:flutter/material.dart';
 
@@ -57,6 +57,7 @@ class _HomePageState extends State<HomePage> {
                 SizedBox(height: 8),
                 Expanded(
                     child: GridView.count(
+                  physics: BouncingScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
@@ -69,10 +70,29 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (_) => ChallengePage(
-                                questions: quiz.questions,
+                                quiz: quiz,
                               ),
                             ),
-                          ),
+                          ).then((_) {
+                            final questions = controller.quizzes!
+                                .map((element) => element.questions.length)
+                                .reduce((value, element) {
+                              return value + element;
+                            });
+
+                            final questionsAnswered = controller.quizzes!
+                                .map((element) => element.questionsAnswered)
+                                .reduce((value, element) {
+                              return value + element;
+                            });
+
+                            final score =
+                                (questionsAnswered / questions * 100).toInt();
+
+                            controller.user!.score = score;
+
+                            setState(() {});
+                          }),
                         ),
                       )
                       .toList(),

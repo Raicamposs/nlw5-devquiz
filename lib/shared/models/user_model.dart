@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class UserModel {
-  final int score;
+  int score;
   final String name;
   final String photoUrl;
 

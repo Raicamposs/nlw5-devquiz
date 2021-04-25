@@ -34,13 +34,13 @@ extension StringExt on String {
 class QuizModel {
   final String title;
   final List<QuestionModel> questions;
-  final int questionsAnswered;
+  int questionsAnswered;
   final String image;
   final Level level;
 
   int get questionsNumber => questions.length;
   double get percentProgress =>
-      questionsNumber > 0 ? (questionsAnswered * 100) / questionsNumber : 0;
+      questionsNumber > 0 ? (questionsAnswered / questionsNumber) : 0;
 
   QuizModel({
     required this.title,
